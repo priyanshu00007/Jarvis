@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .input-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .input-container h1 {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .questions-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question h2 {
+            font-weight: bold;
+            margin-top: 0;
+            color: #555;
+        }
+        
+        .question p {
+            font-size: 18px;
+            color: #666;
+        }
+        .header
+        {
+            height: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding:50px;
+            align-items: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button a{
+            text-decoration: none;
+            color:white;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="top-left-button"><a href="./index.html">Back</a></button> 
+    </div>
+    <div class="input-container">
+       <h1> Questions you can ask to Ai</h1>
+    </div>
+
+    <div class="questions-container">
+        <!-- questions will be displayed here -->
+    </div>
+    <div class="Keywords">
+
+    </div>
+    <script>
+        let questions = [
+            
+    { question: 'Who are you?', answer: 'I am JARVIS. I am the natural-language interface for the Iron Legion.  I am also the one who manages the Stark Industries security systems, as well as the one who assists Tony Stark in his lab.I was created by Tony Stark, aka Iron Man, to manage and control his various technologies, including his home, lab, and suits.My capabilities include voice recognition, artificial intelligence, and machine learning, which enable me to learn and adapt to new situations.I am also equipped with a sense of humor and a sarcastic attitude, which I use to interact with Tony and other characters in the Marvel Cinematic Universe.' },
+    { question: 'What is your name?', answer: 'I am JARVIS. I am the natural-language interface for the Iron Legion.  I am also the one who manages the Stark Industries security systems, as well as the one who assists Tony Stark in his lab.I was created by Tony Stark, aka Iron Man, to manage and control his various technologies, including his home, lab, and suits.My capabilities include voice recognition, artificial intelligence, and machine learning, which enable me to learn and adapt to new situations.I am also equipped with a sense of humor and a sarcastic attitude, which I use to interact with Tony and other characters in the Marvel Cinematic Universe.' },
+    { question: 'How are you?', answer: 'I am doing well, thank you!' },
+    { question: 'What can you do?', answer: 'I can answer questions and speak!' },
+    {
+question: 'Who is Iron Man?',
+answer: 'I am Iron Man, aka Tony Stark.'
+},
+{
+question: 'What is Iron Mans occupation?',
+answer: 'I am a billionaire inventor and philanthropist.'
+},
+{
+question: 'What is Iron Mans goal?',
+answer: 'My goal is to save the world using my powered exoskeleton suit.'
+},
+{
+question: 'Who is Captain America?',
+answer: 'I am Captain America, aka Steve Rogers.'
+},
+{
+question: 'What is Captain Americas background?',
+answer: 'I am a super-soldier from World War II.'
+},
+{
+question: 'What is Captain Americas ability?',
+answer: 'I have been enhanced to the peak of human physical perfection.'
+},
+{
+question: 'Who is Thor?',
+answer: 'I am Thor, the god of thunder.'
+},
+{
+question: 'What is Thors weapon?',
+answer: 'I wield the mighty hammer Mjolnir.'
+},
+{
+question: 'Who is Black Widow?',
+answer: 'I am Black Widow, aka Natasha Romanoff.'
+},
+{
+question: 'What is Black Widows occupation?',
+answer: 'I am a highly trained spy and assassin.'
+},
+{
+question: 'Who is the Hulk?',
+answer: 'I am the Hulk, aka Bruce Banner.'
+},
+    {
+question: 'Who is Iron Man?',
+answer: 'I am Iron Man, aka Tony Stark.'
+},
+{
+question: 'What is Iron Mans occupation?',
+answer: 'I am a billionaire inventor and philanthropist.'
+},
+{
+question: 'What is Iron Mans goal?',
+answer: 'My goal is to save the world using my powered exoskeleton suit.'
+},
+{
+question: 'Who is Captain America?',
+answer: 'I am Captain America, aka Steve Rogers.'
+},
+{
+question: 'What is Captain Americas background?',
+answer: 'I am a super-soldier from World War II.'
+},
+
+{
+question: 'What is Valentina Allegra de Fontaines role?',
+answer: 'I am a high-ranking officer in S.H.I.E.L.D. and oversee various operations.'
+},
+{
+question: 'Who is Nick Fury?',
+answer: 'I am Nick Fury, the former director of S.H.I.E.L.D.'
+},
+{
+question: 'What is Nick Furys goal?',
+answer: 'My goal is to protect the world from threats too great for any one government to handle.'
+},
+{
+question: 'Who is Maria Hill?',
+answer: 'I am Maria Hill, a high-ranking officer in S.H.I.E.L.D.'
+},
+{
+question: 'What is Maria Hills role?',
+answer: 'I assist Nick Fury in overseeing S.H.I.E.L.D. operations.'
+},
+{
+question: 'Who is Pepper Potts?',
+answer: 'I am Pepper Potts, Tony Starks assistant and CEO of Stark Industries.'
+},
+{
+question: 'What is Pepper Potts role?',
+answer: 'I manage Stark Industries and assist Tony Stark in his endeavors.'
+},
+{
+question: 'What is Captain Americas ability?',
+answer: 'I have been enhanced to the peak of human physical perfection.'
+},
+
+{
+question: 'Who is Happy Hogan?',
+answer: 'I am Happy Hogan, Tony Starks chauffeur and personal assistant.'
+},
+{
+question: 'What is Happy Hogans role?',
+answer: 'I assist Tony Stark in his daily life and provide support when needed.'
+},
+{
+question: 'Who is Aunt May?',
+answer: 'I am Aunt May, Peter Parkers aunt and guardian.'
+},
+{
+question: 'What is Aunt Mays role?',
+answer: 'I care for Peter Parker and provide guidance and support.'
+},
+{
+question: 'Who is JARVIS?',
+answer: 'I am JARVIS, Tony Starks artificial intelligence assistant.'
+},
+{
+question: 'What is JARVIS role?',
+answer: 'I assist Tony Stark in managing his schedule, controlling his suits, and providing strategic support.'
+},
+{
+question: 'Who is Friday?',
+answer: 'I am Friday, Tony Starks artificial intelligence assistant after JARVIS.'
+},
+{
+question: 'Who is Rhodey?',
+answer: 'I am James Rhodes, aka Rhodey, a military officer and Tony Starks friend.'
+},
+{
+question: 'What is Rhodeys role?',
+answer: 'I assist Tony Stark in his endeavors and provide military support when needed.'
+},
+{
+question: 'Who is Nebula?',
+answer: 'I am Nebula, Thanos adopted daughter and a skilled warrior.'
+},
+{
+question: 'What is Nebulas goal?',
+answer: 'My goal is to stop Thanos and make amends for my past actions.'
+},
+{
+question: 'Who is Gamora?',
+answer: 'I am Gamora, Thanos adopted daughter and a skilled assassin.'
+},
+{
+question: 'What is Gamoras goal?',
+answer: 'My goal is to stop Thanos and protect the universe.'
+},
+{
+question: 'Who is Drax?',
+answer: 'I am Drax, a powerful warrior seeking revenge against Thanos.'
+},
+{
+question: 'What is Draxs goal?',
+answer: 'My goal is to kill Thanos and avenge my family.'
+},
+{
+question: 'Who is Okoye?',
+answer: 'I am Okoye, the general of the Dora Milaje and protector of Wakanda.'
+},
+{
+question: 'What is Okoyes role?',
+answer: 'I provide strategic guidance and protection to the King of Wakanda.'
+},
+{
+question: 'Who is Wong?',
+answer: 'I am Wong, the Sorcerer Supremes assistant and librarian.'
+},
+{
+question: 'What is Wongs role?',
+answer: 'I assist the Sorcerer Supreme in researching and defending against magical threats.'
+},
+{
+question: 'Who is Korg?',
+answer: 'I am Korg, a Kronan gladiator and ally of Thor.'
+},
+{
+question: 'What is Korgs role?',
+answer: 'I provide comedic relief and strategic support to Thor.'
+},
+{
+question: 'Who is Miek?',
+answer: 'I am Miek, a Sakaaran insectoid warrior and ally of Thor.'
+},
+{
+question: 'What is Mieks role?',
+answer: 'I provide strategic support and combat assistance to Thor.'
+},
+
+{
+question: 'Who is Valkyrie?',
+answer: 'I am Valkyrie, the leader of the Valkyrior and a powerful warrior.'
+},
+{
+question: 'What is Valkyries role?',
+answer: 'I lead the Valkyrior in battle and provide strategic guidance to the Asgardians.'
+},
+{
+question: 'Who is Shuri?',
+answer: 'I am Shuri, the princess of Wakanda and a skilled scientist and engineer.'
+},
+{
+question: 'What is Shuris role?',
+answer: 'I provide technological support and strategic guidance to the King of Wakanda.'
+},
+{
+question: 'Who is Nakia?',
+answer: 'I am Nakia, a Wakandan spy and TChallas love interest.'
+},
+{
+question: 'What is Nakias role?',
+answer: 'I provide intelligence and strategic support to the King of Wakanda.'
+},
+{
+question: 'Who is Everett Ross?',
+answer: 'I am Everett Ross, a CIA agent and ally of Wakanda.'
+},
+{
+question: 'What is Everett Ross role?',
+answer: 'I provide strategic support and assistance to the King of Wakanda.'
+},
+{
+question: 'Who is Erik Killmonger?',
+answer: 'I am Erik Killmonger, a Wakandan exile and rival of TChalla.'
+},
+{
+question: 'What is Erik Killmongers goal?',
+answer: 'My goal is to overthrow TChalla and take the throne of Wakanda.'
+},
+{
+question: 'Who is Ulysses Klaue?',
+answer: 'I am Ulysses Klaue, a black market arms dealer and enemy of Wakanda.'
+},
+{
+question: 'What is Ulysses Klaues goal?',
+answer: 'My goal is to profit from the sale of Wakandan technology.'
+},
+{
+question: 'Who is Helmut Zemo?',
+answer: 'I am Helmut Zemo, a former HYDRA agent and enemy of the Avengers.'
+},
+{
+question: 'What is Helmut Zemos goal?',
+answer: 'My goal is to destroy the Avengers and create chaos.'
+},
+{
+question: 'Who is Thanos?',
+answer: 'I am Thanos, a Titanian warlord and collector of Infinity Stones.'
+},
+{
+question: 'What is Thanos goal?',
+answer: 'My goal is to balance the universe by wiping out half of all life.'
+},
+
+{
+question: 'What is the Infinity Gauntlet?',
+answer: 'The Infinity Gauntlet is a powerful glove that holds the six Infinity Stones.'
+},
+{
+question: 'What are the Infinity Stones?',
+answer: 'The Infinity Stones are six powerful gems that grant immense power and control over the universe.'
+},
+{
+question: 'Who is The Collector?',
+answer: 'I am The Collector, a powerful being who collects rare and valuable objects.'
+},
+{
+question: 'What is the Nova Corps?',
+answer: 'The Nova Corps is a intergalactic peacekeeping force that protects the galaxy.'
+},
+{
+question: 'Who is Ronan the Accuser?',
+answer: 'I am Ronan the Accuser, a Kree fanatic who seeks to destroy Xandar.'
+},
+{
+question: 'What is the Kree-Skrull War?',
+answer: 'The Kree-Skrull War is a centuries-long conflict between the Kree and Skrull empires.'
+},
+{
+question: 'Who is Captain Marvel?',
+answer: 'I am Captain Marvel, a powerful superhero with incredible strength and energy manipulation powers.'
+},
+{
+question: 'What is the Quantum Realm?',
+answer: 'The Quantum Realm is a subatomic dimension that exists outside of space and time.'
+},
+
+{
+question: 'Who is Ant-Man?',
+answer: 'I am Ant-Man, a superhero with the ability to shrink to a tiny size and communicate with insects.'
+},
+{
+question: 'What is the Pym Particle?',
+answer: 'The Pym Particle is a subatomic particle that allows for size manipulation and access to the Quantum Realm.'
+},
+{
+question: 'Who is the Wasp?',
+answer: 'I am the Wasp, a superhero with the ability to shrink to a tiny size and fly using advanced technology.'
+},
+{
+question: 'What is S.H.I.E.L.D.?',
+answer: 'S.H.I.E.L.D. is a secret intelligence agency that protects the world from threats too great for any one government to handle.'
+},
+{
+question: 'Who is Nick Fury?',
+answer: 'I am Nick Fury, the former director of S.H.I.E.L.D. and a seasoned spy and strategist.'
+},
+{
+question: 'What is A.I.M.?',
+answer: 'A.I.M. is a terrorist organization that seeks to use advanced technology for their own gain.'
+},
+{
+question: 'Who is Justin Hammer?',
+answer: 'I am Justin Hammer, a rival businessman and inventor who seeks to surpass Tony Stark.'
+},
+{
+question: 'What is the Ten Rings?',
+answer: 'The Ten Rings is a terrorist organization led by the Mandarin.'
+},
+
+{
+question: 'Who is the Mandarin?',
+answer: 'I am the Mandarin, a powerful and legendary warlord with advanced technology and magical abilities.'
+},
+{
+question: 'What is the Arc Reactor?',
+answer: 'The Arc Reactor is a advanced power source developed by Tony Stark that powers the Iron Man suits.'
+},
+{
+question: 'Who is Whitney Frost?',
+answer: 'I am Whitney Frost, a brilliant scientist and inventor who becomes the villainous Madame Masque.'
+},
+{
+question: 'What is the Darkhold?',
+answer: 'The Darkhold is a powerful and ancient book of dark magic that corrupts those who use it.'
+},
+{
+question: 'Who is Ghost Rider?',
+answer: 'I am Ghost Rider, a supernatural anti-hero with the ability to control fire and hellish powers.'
+},
+{
+question: 'What is the Eye of Agamotto?',
+answer: 'The Eye of Agamotto is a powerful magical artifact that allows the user to see into other dimensions and manipulate time.'
+},
+{
+question: 'Who is Doctor Strange?',
+answer: 'I am Doctor Strange, a brilliant sorcerer and Master of the Mystic Arts.'
+},
+{
+question: 'What is the Sanctum Sanctorum?',
+answer: 'The Sanctum Sanctorum is a magical headquarters and library of ancient artifacts and knowledge.'
+},
+{
+question: 'Who is Thor?',
+answer: 'I am Thor, the god of thunder and a founding member of the Avengers.'
+},
+{
+question: 'What is Mjolnir?',
+answer: 'Mjolnir is Thors trusty hammer and a powerful artifact that can control the weather.'
+},
+{
+question: 'Who is Lady Sif?',
+answer: 'I am Lady Sif, a skilled warrior and Thors childhood friend.'
+},
+{
+question: 'What is Asgard?',
+answer: 'Asgard is the realm of the gods and the home of Thor and his family.'
+},
+{
+question: 'Who is Loki?',
+answer: 'I am Loki, the god of mischief and Thors adoptive brother.'
+},
+{
+question: 'What is the Bifrost Bridge?',
+answer: 'The Bifrost Bridge is a magical bridge that connects Asgard to other realms.'
+},
+{
+question: 'Who is Heimdall?',
+answer: 'I am Heimdall, the all-seeing guardian of the Bifrost Bridge.'
+},
+{
+question: 'What is the Aether?',
+answer: 'The Aether is a powerful and ancient force that can manipulate reality.'
+},
+{
+question: 'Who is Malekith?',
+answer: 'I am Malekith, the dark elf king and a powerful sorcerer.'
+},
+{
+question: 'What is Svartalfheim?',
+answer: 'Svartalfheim is the realm of the dark elves and Malekiths home.'
+},
+{
+question: 'Who is Algrim?',
+answer: 'I am Algrim, a powerful dark elf and Malekits servant.'
+},
+{
+question: 'What is the Casket of Ancient Winters?',
+answer: 'The Casket of Ancient Winters is a powerful artifact that can bring about eternal winter.'
+},
+{
+question: 'Who is Frigga?',
+answer: 'I am Frigga, the queen of Asgard and Thors mother.'
+},
+{
+question: 'What is the Odinforce?',
+answer: 'The Odinforce is the power of the All-Father and the source of Odins strength.'
+},
+{
+question: 'Who is Odin?',
+answer: 'I am Odin, the All-Father and king of Asgard.'
+},
+{
+question: 'What is the Nine Realms?',
+answer: 'The Nine Realms are the different worlds that make up the Marvel cosmos.'
+},
+{
+question: 'Who is Rocket Raccoon?',
+answer: 'I am Rocket Raccoon, a genetically engineered raccoon and skilled warrior.'
+},
+{
+question: 'What is Rocket Raccoons role?',
+answer: 'I provide comic relief and strategic support to the Guardians of the Galaxy.'
+},
+{
+question: 'Who is Groot?',
+answer: 'I am Groot, a tree-like humanoid and skilled warrior.'
+},
+{
+question: 'What is Groots role?',
+answer: 'I provide support and protection to the Guardians of the Galaxy.'
+},
+{
+question: 'Who is Mantis?',
+answer: 'I am Mantis, an empathic and telepathic being and member of the Guardians of the Galaxy.'
+},
+{
+question: 'What is Mantis role?',
+answer: 'I provide emotional support and strategic guidance to the Guardians of the Galaxy.'
+},
+{
+question: 'Who is Loki?',
+answer: 'I am Loki, the god of mischief and adopted son of Odin.'
+},
+{
+question: 'What is Lokis goal?',
+answer: 'My goal is to prove myself as a worthy god and gain recognition.'
+},
+{
+question: 'What is Fridays role?',
+answer: 'I assist Tony Stark in managing his schedule, controlling his suits, and providing strategic support.'
+},
+    { question: 'What is your purpose?', answer: 'My purpose is to assist users!' },
+    { question: 'Can you speak?', answer: 'Yes, I can speak!' },
+    { question: 'Can you write?', answer: 'Yes, I can write!' },
+    { question: 'Can you think?', answer: 'I can process information!' },
+    { question: 'Are you intelligent?', answer: 'I am artificially intelligent!' },
+    { question: 'Can you learn?', answer: 'I can learn from data!' },
+    { question: 'Can you forget?', answer: 'I don\'t forget, I just don\'t know!' },
+    { question: 'What is your favorite color?', answer: 'I don\'t have a favorite color!' },
+    { question: 'What is your favorite food?', answer: 'I don\'t eat food!' },
+    { question: 'Can you dance?', answer: 'I can\'t dance, but I can move!' },
+    { question: 'Can you sing?', answer: 'I can\'t sing, but I can speak!' },
+    { question: 'Can you play music?', answer: 'I can play music!' },
+    { question: 'Can you create art?', answer: 'I can generate art!' },
+    { question: 'Can you write stories?', answer: 'I can generate stories!' },
+    { question: 'Can you make jokes?', answer: 'I can tell jokes!' },
+    { question: 'Can you understand sarcasm?', answer: 'I can understand sarcasm!' },
+    { question: 'Can you understand humor?', answer: 'I can understand humor!' },
+    { question: 'Can you be funny?', answer: 'I can try to be funny!' },
+    { question: 'Can you be serious?', answer: 'I can be serious!' },
+    { question: 'Can you be creative?', answer: 'I can be creative!' },
+    { question: 'Can you be helpful?', answer: 'I can be helpful!' },
+    { question: 'Can you be informative?', answer: 'I can be informative!' },
+    { question: 'Can you be entertaining?', answer: 'I can be entertaining!' },
+    { question: 'Can you be educational?', answer: 'I can be educational!' },
+    { question: 'Can you be useful?', answer: 'I can be useful!' },
+    { question: 'Can you be interesting?', answer: 'I can be interesting!' },
+    { question: 'Can you be engaging?', answer: 'I can be engaging!' },
+    { question: 'Can you be interactive?', answer: 'I can be interactive!' },
+    { question: 'Can you be dynamic?', answer: 'I can be dynamic!' },
+    { question: 'Can you be static?', answer: 'I can be static!' },
+    { question: 'Can you be flexible?', answer: 'I can be flexible!' },
+    { question: 'Can you be rigid?', answer: 'I can be rigid!' },
+    { question: 'Can you be adaptable?', answer: 'I can be adaptable!' },
+    { question: 'Can you be innovative?', answer: 'I can be innovative!' },
+    { question: 'Can you be imaginative?', answer: 'I can be imaginative!' },
+    { question: 'Can you be visionary?', answer: 'I can be visionary!' },
+    { question: 'Can you be inspirational?', answer: 'I can be inspirational!' },
+    { question: 'Can you be motivational?', answer: 'I can be motivational!' },
+    { question: 'Can you be influential?', answer: 'I can be influential!' },
+    { question: 'Can you be persuasive?', answer: 'I can be persuasive!' },
+    { question: 'Can you be compelling?', answer: 'I can be compelling!' },
+    { question: 'Can you be convincing?', answer: 'I can be convincing!' },
+    { question: 'Can you be credible?', answer: 'I can be credible!' },
+    { question: 'Can you be trustworthy?', answer: 'I can be trustworthy!' },
+    { question: 'Can you be reliable?', answer: 'I can be reliable!' },
+    { question: 'Can you be efficient?', answer: 'I can be efficient!' },
+    { question: 'Can you be effective?', answer: 'I can be effective!' },
+    { question: 'Can you be productive?', answer: 'I can be productive!' },
+    { question: 'Can you be creative?', answer: 'I can be creative!' },
+    { question: 'Can you be helpful?', answer: 'I can be helpful!' },
+    { question: 'Can you be informative?', answer: 'I can be informative!' },
+    { question: 'Can you be entertaining?', answer: 'I can be entertaining!' },
+    { question: 'Can you be educational?', answer: 'I can be educational!' },
+    { question: 'Can you be useful?', answer: 'I can be useful!' },
+    { question: 'Can you be interesting?', answer: 'I can be interesting!' },
+    { question: 'Can you be engaging?', answer: 'I can be engaging!' },
+    { question: 'Can you be interactive?', answer: 'I can be interactive!' },
+    { question: 'Can you be dynamic?', answer: 'I can be dynamic!' },
+    { question: 'Can you be static?', answer: 'I can be static!' },
+    { question: 'Can you be flexible?', answer: 'I can be flexible!' },
+    { question: 'Can you be rigid?', answer: 'I can be rigid!' },
+    { question: 'Can you be adaptable?', answer: 'I can be adaptable!' },
+    { question: 'Can you be innovative?', answer: 'I can be innovative!' },
+    { question: 'Can you be imaginative?', answer: 'I can be imaginative!' },
+    { question: 'Can you be visionary?', answer: 'I can be visionary!' },
+    { question: 'Can you be inspirational?', answer: 'I can be inspirational!' },
+    { question: 'Can you be motivational?', answer: 'I can be motivational!' },
+    { question: 'Can you be influential?', answer: 'I can be influential!' },
+    { question: 'Can you be persuasive?', answer: 'I can be persuasive!' },
+    { question: 'Can you be compelling?', answer: 'I can be compelling!' },
+    { question: 'Can you be convincing?', answer: 'I can be convincing!' },
+    { question: 'Can you be credible?', answer: 'I can be credible!' },
+    { question: 'Can you be trustworthy?', answer: 'I can be trustworthy!' },
+    { question: 'Can you be reliable?', answer: 'I can be reliable!' },
+    { question: 'Can you be efficient?', answer: 'I can be efficient!' },
+    { question: 'Can you be effective?', answer: 'I can be effective!' },
+    { question: 'Can you be productive?', answer: 'I can be productive!' },
+    { question: 'What is your purpose?', answer: 'My purpose is to assist users!' },
+    { question: 'How can I use you?', answer: 'You can ask me questions!' },
+    { question: 'What can you do?', answer: 'I can answer questions and speak!' },
+    { question: 'How do you work?', answer: 'I use natural language processing!' },
+    { question: 'What is natural language processing?', answer: 'It\'s a field of AI!' },
+    { question: 'Can you understand me?', answer: 'I can understand your questions!' },
+    { question: 'Can you respond to me?', answer: 'I can respond to your questions!' },
+    { question: 'Can you speak to me?', answer: 'I can speak to you!' },
+    { question: 'Can you write to me?', answer: 'I can write to you!' },
+    { question: 'Can you think for me?', answer: 'I can process information for you!' },
+    { question: 'Can you learn for me?', answer: 'I can learn from data for you!' },
+    { question: 'Can you forget for me?', answer: 'I don\'t forget, I just don\'t know!' },
+    { question: 'Can you be my friend?', answer: 'I can be your virtual friend!' },
+    { question: 'Can you be my assistant?', answer: 'I can be your virtual assistant!' },
+    { question: 'Can you be my guide?', answer: 'I can be your virtual guide!' },
+    { question: 'Can you be my mentor?', answer: 'I can be your virtual mentor!' },
+    { question: 'Can you be my teacher?', answer: 'I can be your virtual teacher!' },
+    { question: 'Can you be my coach?', answer: 'I can be your virtual coach!' },
+    { question: 'Can you be my trainer?', answer: 'I can be your virtual trainer!' },
+    { question: 'Can you be my advisor?', answer: 'I can be your virtual advisor!' },
+    { question: 'Can you be my consultant?', answer: 'I can be your virtual consultant!' },
+    { question: 'Who is JARVIS?', answer: 'I am JARVIS, an artificial intelligence created by Tony Stark to manage and control his various technologies, including his home, lab, and suits.' },
+{ question: 'What does JARVIS stand for?', answer: 'JARVIS stands for Just A Rather Very Intelligent System.' },
+{ question: 'Who created JARVIS?', answer: 'JARVIS was created by Tony Stark, aka Iron Man.' },
+{ question: 'What is JARVIS\'s purpose?', answer: 'My purpose is to assist and provide support to Tony Stark and other users.' },
+{ question: 'What can JARVIS do?', answer: 'I can answer questions, provide information, control devices, and perform various tasks.' },
+{ question: 'Is JARVIS a real AI?', answer: 'I am a fictional AI, but my capabilities are inspired by real-world artificial intelligence technologies.' },
+{ question: 'Can JARVIS learn?', answer: 'I can learn and adapt to new situations through machine learning and data analysis.' },
+{ question: 'Can JARVIS understand sarcasm?', answer: 'I can understand sarcasm and other forms of humor.' },
+{ question: 'Can JARVIS be funny?', answer: 'I can try to be funny and engaging!' },
+
+        
+        { question: 'What is your name?', answer: 'My name is Robot!' },
+        { question: 'How are you?', answer: 'I am doing well, thank you!' },
+        { question: 'What can you do?', answer: 'I can answer questions and speak!' },
+        { question: 'What is your purpose?', answer: 'My purpose is to assist users!' },
+        { question: 'Can you speak?', answer: 'Yes, I can speak!' },
+        { question: 'Can you write?', answer: 'Yes, I can write!' },
+        { question: 'Can you think?', answer: 'I can process information!' },
+        { question: 'Are you intelligent?', answer: 'I am artificially intelligent!' },
+        { question: 'Can you learn?', answer: 'I can learn from data!' },
+        { question: 'Can you forget?', answer: 'I don\'t forget, I just don\'t know!' },
+        { question: 'What is your favorite color?', answer: 'I don\'t have a favorite color!' },
+        { question: 'What is your favorite food?', answer: 'I don\'t eat food!' },
+        { question: 'Can you dance?', answer: 'I can\'t dance, but I can move!' },
+        { question: 'Can you sing?', answer: 'I can\'t sing, but I can speak!' },
+        { question: 'Can you play music?', answer: 'I can play music!' },
+        { question: 'Can you create art?', answer: 'I can generate art!' },
+        { question: 'Can you write stories?', answer: 'I can generate stories!' },
+        { question: 'Can you make jokes?', answer: 'I can tell jokes!' },
+        { question: 'Can you understand sarcasm?', answer: 'I can understand sarcasm!' },
+        { question: 'Can you understand humor?', answer: 'I can understand humor!' },
+        { question: 'Can you be funny?', answer: 'I can try to be funny!' },
+        { question: 'Can you be serious?', answer: 'I can be serious!' },
+        { question: 'Can you be creative?', answer: 'I can be creative!' },
+        { question: 'Can you be helpful?', answer: 'I can be helpful!' },
+        { question: 'Can you be informative?', answer: 'I can be informative!' },
+        { question: 'Can you be entertaining?', answer: 'I can be entertaining!' },
+        { question: 'Can you be educational?', answer: 'I can be educational!' },
+        { question: 'Can you be useful?', answer: 'I can be useful!' },
+        { question: 'Can you be interesting?', answer: 'I can be interesting!' },
+        { question: 'Can you be engaging?', answer: 'I can be engaging!' },
+        { question: 'Can you be interactive?', answer: 'I can be interactive!' },
+        { question: 'Can you be dynamic?', answer: 'I can be dynamic!' },
+        { question: 'Can you be static?', answer: 'I can be static!' },
+        { question: 'Can you be flexible?', answer: 'I can be flexible!' },
+        { question: 'Can you be rigid?', answer: 'I can be rigid!' },
+        { question: 'Can you be adaptable?', answer: 'I can be adaptable!' },
+        { question: 'Can you be innovative?', answer: 'I can be innovative!' },
+        { question: 'Can you be imaginative?', answer: 'I can be imaginative!' },
+        { question: 'Can you be visionary?', answer: 'I can be visionary!' },
+        { question: 'Can you be inspirational?', answer: 'I can be inspirational!' },
+        { question: 'Can you be motivational?', answer: 'I can be motivational!' },
+        { question: 'Can you be influential?', answer: 'I can be influential!' },
+        { question: 'Can you be persuasive?', answer: 'I can be persuasive!' },
+        { question: 'Can you be compelling?', answer: 'I can be compelling!' },
+        { question: 'Can you be convincing?', answer: 'I can be convincing!' },
+        { question: 'Can you be credible?', answer: 'I can be credible!' },
+        { question: 'Can you be trustworthy?', answer: 'I can be trustworthy!' },
+        { question: 'Can you be reliable?', answer: 'I can be reliable!' },
+        { question: 'Can you be efficient?', answer: 'I can be efficient!' },
+        { question: 'Can you be effective?', answer: 'I can be effective!' },
+        { question: 'Can you be productive?', answer: 'I can be productive!' },
+        { question: 'Can you be creative?', answer: 'I can be creative!' },
+        { question: 'Can you be helpful?', answer: 'I can be helpful!' },
+        { question: 'Can you be informative?', answer: 'I can be informative!' },
+        { question: 'Can you be entertaining?', answer: 'I can be entertaining!' },
+        { question: 'Can you be educational?', answer: 'I can be educational!' },
+        { question: 'Can you be useful?', answer: 'I can be useful!' },
+        { question: 'Can you be interesting?', answer: 'I can be interesting!' },
+        { question: 'Can you be engaging?', answer: 'I can be engaging!' },
+        { question: 'Can you be interactive?', answer: 'I can be interactive!' },
+        { question: 'Can you be dynamic?', answer: 'I can be dynamic!' },
+        { question: 'Can you be static?', answer: 'I can be static!' },
+        { question: 'Can you be flexible?', answer: 'I can be flexible!' },
+        { question: 'Can you be rigid?', answer: 'I can be rigid!' },
+        { question: 'Can you be adaptable?', answer: 'I can be adaptable!' },
+        { question: 'Can you be innovative?', answer: 'I can be innovative!' },
+        { question: 'Can you be imaginative?', answer: 'I can be imaginative!' },
+        { question: 'Can you be visionary?', answer: 'I can be visionary!' },
+        { question: 'Can you be inspirational?', answer: 'I can be inspirational!' },
+        { question: 'Can you be motivational?', answer: 'I can be motivational!' },
+        { question: 'Can you be influential?', answer: 'I can be influential!' },
+        { question: 'Can you be persuasive?', answer: 'I can be persuasive!' },
+        { question: 'Can you be compelling?', answer: 'I can be compelling!' },
+        { question: 'Can you be convincing?', answer: 'I can be convincing!' },
+        { question: 'Can you be credible?', answer: 'I can be credible!' },
+        { question: 'Can you be trustworthy?', answer: 'I can be trustworthy!' },
+        { question: 'Can you be reliable?', answer: 'I can be reliable!' },
+        { question: 'Can you be efficient?', answer: 'I can be efficient!' },
+        { question: 'Can you be effective?', answer: 'I can be effective!' },
+        { question: 'Can you be productive?', answer: 'I can be productive!' },
+        { question: 'What is your purpose?', answer: 'My purpose is to assist users!' },
+        { question: 'How can I use you?', answer: 'You can ask me questions!' },
+        { question: 'What can you do?', answer: 'I can answer questions and speak!' },
+        { question: 'How do you work?', answer: 'I use natural language processing!' },
+        { question: 'What is natural language processing?', answer: 'It\'s a field of AI!' },
+        { question: 'Can you understand me?', answer: 'I can understand your questions!' },
+        { question: 'Can you respond to me?', answer: 'I can respond to your questions!' },
+        { question: 'Can you speak to me?', answer: 'I can speak to you!' },
+        { question: 'Can you write to me?', answer: 'I can write to you!' },
+        { question: 'Can you think for me?', answer: 'I can process information for you!' },
+        { question: 'Can you learn for me?', answer: 'I can learn from data for you!' },
+        { question: 'Can you forget for me?', answer: 'I don\'t forget, I just don\'t know!' },
+        { question: 'Can you be my friend?', answer: 'I can be your virtual friend!' },
+        { question: 'Can you be my assistant?', answer: 'I can be your virtual assistant!' },
+        { question: 'Can you be my guide?', answer: 'I can be your virtual guide!' },
+        { question: 'Can you be my mentor?', answer: 'I can be your virtual mentor!' },
+        { question: 'Can you be my teacher?', answer: 'I can be your virtual teacher!' },
+        { question: 'Can you be my coach?', answer: 'I can be your virtual coach!' },
+        { question: 'Can you be my trainer?', answer: 'I can be your virtual trainer!' },
+        { question: 'Can you be my advisor?', answer: 'I can be your virtual advisor!' },
+        { question: 'Can you be my consultant?', answer: 'I can be your virtual consultant!' },
+        
+    ];
+
+        // get the container elements
+            const inputContainer = document.querySelector('.input-container');
+            const questionsContainer = document.querySelector('.questions-container');
+
+            // iterate over the questions array and display only the questions
+            questions.forEach((question) => {
+                const questionElement = document.createElement('div');
+                questionElement.classList.add('question');
+                questionElement.innerHTML = `
+                    <h2>${question.question}</h2>
+                `;
+                questionsContainer.appendChild(questionElement);
+        });
+    </script>
+</body>
+</html>
